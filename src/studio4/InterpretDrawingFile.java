@@ -12,6 +12,7 @@ import edu.princeton.cs.introcs.StdDraw;
 /**
  * @author Dennis Cosgrove (http://www.cse.wustl.edu/~cosgroved/)
  */
+
 public class InterpretDrawingFile {
 
 	public static void main(String[] args) throws FileNotFoundException {
@@ -19,6 +20,46 @@ public class InterpretDrawingFile {
 		chooser.showOpenDialog(null);
 		File f = new File(chooser.getSelectedFile().getPath());
 		Scanner in = new Scanner(f); //making Scanner with a File
+
+		//Import Variables From File
+		String shapeType = in.next();
+		int redComponent = in.nextInt();
+		int greenComponent = in.nextInt();
+		int blueComponent = in.nextInt();
+		boolean isFilled = in.nextBoolean();
+		
+
+		//Draw
+		StdDraw.setPenColor(redComponent, greenComponent, blueComponent);
+
+		if (shapeType.equals("ellipse")){
+			double x = in.nextDouble();
+			double y = in.nextDouble();
+			double halfWidth = in.nextDouble();
+			double halfHeight = in.nextDouble();
+			if (isFilled){
+				StdDraw.filledEllipse(x, y, halfWidth, halfHeight);
+			} else {
+				StdDraw.ellipse(x, y, halfWidth, halfHeight);
+			}
+		} else if (shapeType.equals("rectangle")){
+			double x = in.nextDouble();
+			double y = in.nextDouble();
+			double halfWidth = in.nextDouble();
+			double halfHeight = in.nextDouble();
+			if (isFilled){
+				StdDraw.filledRectangle(x, y, halfWidth, halfHeight);
+			} else {
+				StdDraw.rectangle(x, y, halfWidth, halfHeight);
+			}
+		} else if (shapeType.equals("triangle")){
+			
+			
+		} 
+		
+
 		
 	}
+		
 }
+
